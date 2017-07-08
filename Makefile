@@ -11,11 +11,10 @@ ifneq ($(REV),)
 DEFINES  += -DKCA_REV=\"$(REV)\"
 endif
 
-
-CFLAGS    = -pipe -std=c99 -Wall -pedantic $(DEBUG) $(DEFINES)
+CFLAGS    += -pipe -std=c99 -Wall -pedantic $(DEBUG) $(DEFINES)
 SRC_FILES = $(wildcard *.c)
 O_FILES   = $(SRC_FILES:%.c=%.o)
-LIBS      = -framework Security -framework CoreFoundation -lcrypto
+LIBS      = $(LDFLAGS) -framework Security -framework CoreFoundation -lcrypto
 
 
 .PHONY: all clean run
